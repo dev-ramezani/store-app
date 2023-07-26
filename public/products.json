@@ -1,0 +1,83 @@
+[
+    {
+        "id":1,
+        "slug":"panter-pen",
+        "image":"/products/1.jpg",
+        "name":"Panter pen",
+        "price":"8000 Toman",
+        "model":"Dr.Panter"
+    },
+    {
+        "id":2,
+        "slug":"invisible-apt-pen",
+        "image":"/products/2.jpg",
+        "name":"Invisible Apt pen",
+        "price":"40000 Toman"
+    },
+    {
+        "id":3,
+        "slug":"c.class-pencil-gripper",
+        "image":"/products/3.jpg",
+        "name":"C.Class pencil gripper",
+        "price":"28000 Toman",
+        "model":"AR1412",
+        "description":"Pack of 2"
+    },
+    {
+        "id":4,
+        "slug":"panter-etude",
+        "image":"/products/4.jpg",
+        "name":"Panter etude",
+        "price":"58000 Toman",
+        "model":"Glass"
+    },
+    {
+        "id":5,
+        "slug":"zebra-etude",
+        "image":"/products/5.jpg",
+        "name":"Zebra etude",
+        "price":"130000 Toman",
+        "model":"Drafix"
+    },
+    {
+        "id":6,
+        "slug":"owner-cerebal-etude",
+        "image":"/products/6.jpg",
+        "name":"Owner cerebal etude",
+        "price":"20000 Toman"
+    },
+    {
+        "id":7,
+        "slug":"panter-cerebal-etude",
+        "image":"/products/7.jpg",
+        "name":"Panter cerebal etude",
+        "price":"28000 Toman",
+        "model":"Highpolymer",
+        "description":"Pack of 2"
+    },
+    {
+        "id":8,
+        "slug":"faber-castell-eraser-sleeve-mini",
+        "image":"/products/8.jpg",
+        "name":"Faber-Castell eraser",
+        "price":"26000 Toman",
+        "model":"Sleeve Mini"
+    },
+    {
+        "id":9,
+        "slug":"faber-castell-eraser-pvc-free",
+        "image":"/products/9.jpg",
+        "name":"Faber-Castel eraser",
+        "price":"19000 Toman",
+        "model":"PVC FREE"
+    },
+    {
+        "id":10,
+        "slug":"faber-castell-colored-pencils",
+        "image":"/products/10.jpg",
+        "name":"Faber-Castell colored pencils",
+        "price":"510000 Toman",
+        "model":"Classic",
+        "description": "36 colors"
+    }
+]
