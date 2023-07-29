@@ -1,83 +1,118 @@
 [
     {
         "id":1,
+        "status":"normal",
         "slug":"panter-pen",
         "image":"/products/1.jpg",
         "name":"Panter pen",
-        "price":"8000 Toman",
-        "model":"Dr.Panter"
+        "available_colors":["black", "red", "blue", "green", "pink", "orange"],
+        "model":"Dr.Panter",
+        "discount":0,
+        "price":[8000, 8000, 8000, 8000, 8000, 8000]
     },
     {
         "id":2,
+        "status":"discounted",
         "slug":"invisible-apt-pen",
         "image":"/products/2.jpg",
         "name":"Invisible Apt pen",
-        "price":"40000 Toman"
+        "available_colors":["black", "blue", "yellow", "green", "pink", "purple", "orange"],
+        "body_material":"plastic",
+        "tip_type":"felt",
+        "discount":25,
+        "price":[49000, 39500, 39000, 38500, 39500, 49000, 45000]
     },
     {
         "id":3,
+        "status":"normal",
         "slug":"c.class-pencil-gripper",
         "image":"/products/3.jpg",
         "name":"C.Class pencil gripper",
-        "price":"28000 Toman",
         "model":"AR1412",
-        "description":"Pack of 2"
+        "package":"2 pack in one pocket",
+        "discount":0,
+        "price":[28000]
     },
     {
         "id":4,
+        "status":"normal",
         "slug":"panter-etude",
         "image":"/products/4.jpg",
         "name":"Panter etude",
-        "price":"58000 Toman",
-        "model":"Glass"
+        "available_colors":["white" ,"blue"],
+        "model":"Glass",
+        "body_material":"plastic",
+        "tip_thickness":"0.5 mm",
+        "discount":0,
+        "price":[69000, 69000]
     },
     {
         "id":5,
+        "status":"discounted",
         "slug":"zebra-etude",
         "image":"/products/5.jpg",
         "name":"Zebra etude",
-        "price":"130000 Toman",
-        "model":"Drafix"
+        "available_colors":["black", "white", "red", "blue", "yellow", "green", "pink", "purple", "navy", "orange", "gray"],
+        "model":"Drafix",
+        "body_material":"plastic",
+        "tip_thickness":"0.7 mm",
+        "discount":33,
+        "price":[128000, 138000, 138000, 129900, 138000, 132900, 132900, 138000, 135000, 132900, 128000]
     },
     {
         "id":6,
-        "slug":"owner-cerebal-etude",
+        "status":"normal",
+        "slug":"owner-hb-cerebal-etude",
         "image":"/products/6.jpg",
-        "name":"Owner cerebal etude",
-        "price":"20000 Toman"
+        "name":"Owner HB cerebal etude",
+        "thickness":"0.5 mm",
+        "package":"20 pieces cerebal",
+        "discount":0,
+        "price":[22000]
     },
     {
         "id":7,
+        "status":"normal",
         "slug":"panter-cerebal-etude",
         "image":"/products/7.jpg",
         "name":"Panter cerebal etude",
-        "price":"28000 Toman",
         "model":"Highpolymer",
-        "description":"Pack of 2"
+        "thickness":"0.5 mm",
+        "package":"24 pieces cerebal in each pack & 2 pack in each pocket",
+        "discount":0,
+        "price":[28000]
     },
     {
         "id":8,
+        "status":"normal",
         "slug":"faber-castell-eraser-sleeve-mini",
         "image":"/products/8.jpg",
         "name":"Faber-Castell eraser",
-        "price":"26000 Toman",
-        "model":"Sleeve Mini"
+        "available_colors":["black" ,"red", "blue", "green", "pink", "orange"],
+        "model":"Sleeve Mini",
+        "discount":0,
+        "price":[30000, 30000, 34000, 26000, 32000, 28000]
     },
     {
         "id":9,
+        "status":"normal",
         "slug":"faber-castell-eraser-pvc-free",
         "image":"/products/9.jpg",
         "name":"Faber-Castel eraser",
-        "price":"19000 Toman",
-        "model":"PVC FREE"
+        "available_colors":["black", "blue"],
+        "model":"PVC FREE",
+        "discount":0,
+        "price":[19000, 20000]
     },
     {
         "id":10,
+        "status":"discounted",
         "slug":"faber-castell-colored-pencils",
         "image":"/products/10.jpg",
         "name":"Faber-Castell colored pencils",
-        "price":"510000 Toman",
         "model":"Classic",
-        "description": "36 colors"
+        "package": "36 colors",
+        "discount":50,
+        "price":[510000]
     }
 ]
