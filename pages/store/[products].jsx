@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Inter } from 'next/font/google'
-import Detail from '../../components/detail'
-import products from '../../public/products.json'
+import Detail from '../../containers/detail'
 import React, { useState, useEffect } from 'react'
+import products from '../../public/products/products.json'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Menu from '../components/menu'
-import Card from '../components/card'
+import Menu from '../containers/menu'
+import Card from '../containers/card'
 import { Inter } from 'next/font/google'
-import products from '../public/products.json'
 import React, { useState, useEffect } from 'react'
+import products from '../public/products/products.json'
 
 const inter = Inter({ subsets: ['latin'] })
 

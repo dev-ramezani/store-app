@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Menu from '../components/menu'
+import Menu from '../containers/menu'
 import React, { useState } from 'react'
 import { Inter } from 'next/font/google'
-import { validateEmail, validateInput, validateMessage  } from '../public/validate'
+import { validateEmail, validateInput, validateMessage  } from '../configs/validate'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Menu from '../components/menu'
+import Menu from '../containers/menu'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
