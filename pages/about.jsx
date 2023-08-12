@@ -1,64 +1,77 @@
 import Head from 'next/head'
-import Menu from '../containers/menu'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import LayoutPage from '../containers/LayoutPage'
+import { H1, Paragraph, Hyperlink } from '../components/index'
 
 export default function about() {
   return (
     <>
       <Head>
-         <title>Online stationery store</title>
+         <title>فروشگاه اینترنتی لوازم التحریر</title>
       </Head>
-      <main className={inter.className}>
-        <Menu ID={3} />
-        <h1>About us</h1>
-         <p>
-            Mehr stationery was opened in 1370 with the aim of selling the best stationery in the world to you dear ones.<br/>
-            With the spread of the Corona virus and the closure of many businesses, we decided to continue our business by 
-            creating an internet website so that you can place your orders more easily than before. Of course, serving your 
-            loved ones will be done in person as before.<br/> If the product you want is not available on the site, register your 
-            request through the contact section. More products will be added to the site soon.
-         </p>
-         <img src='/stationery.jpg' alt='stationery-store' />
-      </main>
+      <LayoutPage>
+         <H1 align='center'>درباره ی ما</H1>
+         <Paragraph>
+            لوازم التحریر مهر در سال 1370 با هدف فروش بهترین لوازم التحریر جهان به شما عزیزان افتتاح شد.
+            با شیوع ویروس کرونا و تعطیلی بسیاری از مشاغل تصمیم گرفتیم تا کسب و کار خود را با ساخت یک فروشگاه
+            اینترنتی ادامه دهیم تا شما عزیزان بتوانید راحتر از قبل سفارشات خود را ثبت کنید و نیازی به مراجعه
+            حضوری نداشته باشید؛ بدیهی است که خدمت رسانی به شما عزیزان مانند گذشته به صورت حضوری نیز انجام خواهد 
+            شد.
+         </Paragraph>
+         <div className='text'>
+            <Paragraph>
+               اگر محصول مورد نظر شما در سایت وجود ندارد، از طریق بخش 
+            </Paragraph>
+            <Hyperlink href='/contact'>تماس با ما</Hyperlink>
+            <Paragraph>
+               سفارش خود را ثبت کنید.
+            </Paragraph>
+            <Paragraph>
+               بزودی محصولات بیشتری در سایت اضافه خواهد شد.
+            </Paragraph> 
+         </div>
+         <div className='img'>
+            <img src='About/Stationery_store.jpg' alt='stationery-store' />
+            <img src='About/Stationery_company.jpg' alt='stationery-compony' />
+         </div>
+      </LayoutPage>
       <style jsx>{`
-         h1{
-            margin: 50px;
-            color: #d63031;
-            font-weight: 400;
-            text-align: center; 
+         div.text{
+            display: flex;
+            font-size: 18px;
+            align-items: center;
+            flex-direction: column;
+            margin: 80px 0px 50px;
          }
 
-         p{
-            color: #e74c3c;
-            font-size: 18px;
-            margin: 0px 3px;  
+         div.img{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
          }
 
          img{
-            height: 350px;
-            display: block;
+            width: 615px;
             border-radius: 40px;
-            margin: 50px auto 20px;
+            margin: 30px 30px 60px;
+            box-shadow: 1px 1px 16px gray;
          }
 
-         @media (min-width: 320px) {  
-            img{ 
-               height: 150px; 
-               margin: 20px auto;
+         @media (min-width: 320px) and (max-width: 1200px){
+            div.img{
+               flex-direction: column;
+            }
+
+            img{
+               margin: 30px auto 60px;
             }
          }
 
-         @media (min-width: 375px) {  
-            img{ 
-               height: 185px; 
-               margin: 35px auto;
-            }
-         }
 
-         @media (min-width: 768px) {  
-            img{ height: 350px; }
+         @media (min-width: 320px) and (max-width: 426px){
+            img{
+               width: 320px;
+               margin: 30px auto 60px;
+            }
          }
       `}</style>
     </>

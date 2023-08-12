@@ -1,15 +1,17 @@
 import React from 'react'
 
-const H2 = ({ children }) => { 
+const H2 = ({ children, align }) => { 
    return(
       <>      
          <h2>{children}</h2>
          <style jsx>{`
             h2{
+               color: #c0392b;
                font-weight: 300;
                line-height: 1.3;
+               margin: 1.8rem 0;
                font-size: 2.074rem;
-               margin: 1.2rem 0 1.4rem;
+               text-align: ${align};
             }
          `}</style>
       </>

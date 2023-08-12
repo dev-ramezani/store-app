@@ -1,10 +1,14 @@
 import React from 'react'
 
-const Input = ({ children, textArea }) => {
+const Input = ({ placeholder, onChange }) => {
+   const handleOnChange = (event) => {
+      onChange(event)
+   }
+
    return (
       <>
          <div>
-            <button>{children}</button> 
+            <input placeholder={placeholder} onChange={handleOnChange} /> 
          </div>
          <style jsx>{`
             div{
@@ -14,11 +18,12 @@ const Input = ({ children, textArea }) => {
             input{
                width:100%;
                padding:8px;
+               height:3rem;
                border-radius:2px;
                position:relative;
                display:inline-block;
                text-decoration:none;
-               height:${ textArea ? '3rem' : '9rem' };
+               border:1px solid black;
             }
          `}</style>
       </>

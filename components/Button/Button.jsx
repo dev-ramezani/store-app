@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = ({ children }) => {
+const Button = ({ children, widthAll }) => {
    return (
       <>
          <div>
@@ -9,25 +9,27 @@ const Button = ({ children }) => {
          <style jsx>{`
             div{
                width: 100%;
+               text-align:${ !widthAll && 'center'};
             }
 
             button{
-               width:100%;
                border:2px;
                color:white;
-               padding:16px;
+               padding:15px;
                font-size:1.1;
                cursor:pointer;
-               border-radius:2px;
-               position: relative;
+               font-size:18px;
+               position:relative;
+               border-radius:16px;
                display:inline-block;
                text-decoration: none;
+               background-color:#e74c3c;
                transition-duration: 0.4s;
-               background-color:rgba(220, 221, 225,0.5);
+               width:${ widthAll ? '100%' : 'auto' };
             }
 
             button:hover{
-               box-shadow:0 4px 16px rgba(0, 1, 31, 0.2);
+               box-shadow: 0px 0px 12px gray;
             }
          `}</style>
       </>

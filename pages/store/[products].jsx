@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Inter } from 'next/font/google'
 import Detail from '../../containers/detail'
 import React, { useState, useEffect } from 'react'
-import products from '../../public/products/products.json'
-
-const inter = Inter({ subsets: ['latin'] })
+import LayoutPage from '../../containers/LayoutPage'
+import products from '../../public/Products/products.json'
 
 export default function product() {
   const router = useRouter()
@@ -32,11 +30,11 @@ export default function product() {
   return (
     <>
       <Head>
-        <title>Online stationery store</title>
+        <title>فروشگاه اینترنتی لوازم التحریر</title>
       </Head>
-      <main className={inter.className}> 
+      <LayoutPage>
         { found === false ? <div><h1 className='next-error-h1'>404</h1><hr/><h2>This product could not be found</h2></div> : <Detail product={product} /> }
-      </main>
+      </LayoutPage>
       <style jsx>{`
         div{
           height: 97vh;

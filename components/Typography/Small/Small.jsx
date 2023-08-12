@@ -1,12 +1,14 @@
 import React from 'react'
 
-const Small = ({ children }) => { 
+const Small = ({ children, color }) => { 
    return(
       <>
          <small>{children}</small>
          <style jsx>{`
             small{
-               font-size: 0.833rem;
+               color:${color};
+               font-size:0.9rem;
+               font-weight:900;
             }
          `}</style>
       </>
