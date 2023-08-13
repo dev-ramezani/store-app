@@ -1,87 +1,77 @@
 import React from 'react'
-import Link from 'next/link'
+import { Hyperlink, Paragraph, Delete } from '../components'
 
-export default function Card({ data, type }){
-  const percent_payable = data.status == "discounted" ? 1 - ( data.discount / 100 ) : 1
+export default function Card({ data, from = 'store' }){
+   const percent_payable = data.is_discount ? 1 - ( data.discount / 100 ) : 1
 
-  return (
-    <>
-      <Link legacyBehavior href={`/store/${data.slug}`}>
-        <div className={type}>
-          { data.status == "discounted" &&<span>{data.discount}%</span> }
-          <h3>{data.name}</h3>
-          <img src={data.image} alt={data.name} />
-          { data.status == "discounted" && <p className='oprice'>Last Price: {data.price[0]} Toman</p> }
-          <p className='price'>Price: { Math.round( data.price[0] * percent_payable ) } Toman</p>
-        </div>
-      </Link>
-      <style jsx>{`
-        div{
-          width: 250px;
-          height: 328px;
-          cursor: pointer;
-          text-align: center;
-          position: relative;
-          border-radius: 25px;
-          border: #EA2027 solid 3px;
-          background-color: #ffeaa7;
-        }
+   return (
+      <>
+         <Hyperlink href={`/store/${data.slug}`}>
+            <article>
+               { data.is_discount && <span>{data.discount}%</span> }
+               <img src={`${data.image}`} />
+               <div>
+                  <Paragraph align='center' gap='15px'>{data.name}</Paragraph>
+                  { data.is_discount && <Delete align='center' gap='15px'>{data.price[0]} تومان</Delete> }
+                  <Paragraph align='center' gap='15px'>{Math.round(data.price[0]*percent_payable)} تومان</Paragraph>
+               </div>
+            </article>
+         </Hyperlink>
+         <style jsx>{`
+            article{
+               margin:9px;
+               width:450px;
+               padding:5px;
+               height:253px;
+               cursor:pointer;
+               text-align:center;
+               position:relative;
+               border:#27ae60 solid 2px;
+            }
 
-        .normal{ 
-          padding: 10px;
-          margin: 35px 15px 0px; 
-        }
-        
-        .normal:hover{ 
-          box-shadow: 2px 2px 10px gray; 
-        }
+            article:hover{
+               box-shadow:${from == 'store' && '1px 1px 16px #badc58'};
+            }
 
-        .discounted{ 
-          margin: 8px; 
-          padding: 6px;
-        }
+            div{  
+               display:flex;
+               align-items:center;
+               flex-direction:column;
+               padding:${data.is_discount ? '45px 0px' : '70px 0px'};
+            }
 
-        span{
-          top: ${ type == 'discounted' ? '44px' : '50px'};
-          left: 0px;
-          color: white;
-          height: 20px;
-          padding: 8px;
-          position: absolute;
-          background-color: #EE5A24;
-          border-top-right-radius: 20px;
-          border-bottom-right-radius: 20px;
-        }
+            img{
+               float:left;
+               width:238px;
+               height:238px;
+               padding:10px;
+            }
 
-        h3{
-          color: black;
-          display:block;
-          font-weight: 400;
-          font-size: 17.5px;
-          padding-bottom: 10px;
-          text-decoration: none;
-          margin-block-end: 1em;
-          margin-block-start: 1em;
-        }
+            span{
+               top:35px;
+               left:0px;
+               width:40px;
+               color:white;
+               height:40px;
+               padding:5px;
+               font-size:18px;
+               padding-left:0px;
+               position:absolute;
+               background-color:#2ecc71;
+               border-top-right-radius:20px;
+               border-bottom-right-radius:20px;
+            }
 
-        img{
-          width: 200px;
-          height: 200px;
-          border-radius: 35px;
-          border: 2.5px solid #fed330;
-        }
+            @media (min-width: 320px) and (max-width: 426px){
+               article{ 
+                  width:300px;
+               }
 
-        .oprice{
-          color: #EA2027;
-          margin-top: 5px;
-          margin-bottom: -12px;
-          text-decoration: line-through;
-        }
-
-        .price{
-          margin-top: 20px;
-        }
-      `}</style>
-    </>
-    )
+               img{
+                  width:150px;
+               }
+            }
+         `}</style>
+      </>
+   )
 }

@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import Card from '../../containers/card'
+import { H1 } from '../../components'
+import Card from '../../containers/Card'
 import React, { useState, useEffect } from 'react'
 import LayoutPage from '../../containers/LayoutPage'
 import products from '../../public/Products/products.json'
@@ -19,44 +20,23 @@ export default function Store() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
          </Head>    
          <LayoutPage>
-            <h2>Our Products: </h2>
-            {data.length > 0 && (
-               <div>
-                  {data.map((products) => (
-                     <Card key={products.id} data={products} type='normal' />
-                  ))}
-               </div>
-            )}
+            <H1 align='center'>محصولات ما</H1>
+            <div>
+               {data.length > 0 && (
+                  <>
+                     {data.map((products) => (
+                        <Card key={products.id} data={products} />
+                     ))}
+                  </>
+               )}
+            </div>
          </LayoutPage>
          <style jsx>{`
             div{
                display: flex;
                flex-wrap: wrap;
-               justify-content: center;
-            }
-
-            h2{
-               font-size: 25px;
-               margin-top: 60px;
-               font-weight: 500;
-               text-align: center;
-               text-shadow: 2px 2px 4px gray;
-            }
-  
-            @media (min-width: 768px) { 
-               h2{ font-size: 30px; }
-            }
-  
-            @media (min-width: 992px) { 
-               h2{ font-size: 30px; }
-            }
-  
-            @media (min-width: 1200px) { 
-               h2{ font-size: 35px; }
-            }
-        
-            @media (min-width: 1600px) { 
-               h2{ font-size: 35px; }
+               flex-direction:row;
+               justify-content:center;
             }
          `}</style>
       </>

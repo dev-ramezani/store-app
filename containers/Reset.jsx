@@ -7,7 +7,7 @@ const Reset = () => {
          styles={css`
             @font-face {
                font-family: Nazanin;
-               src: url('./Font/Nazanin.ttf');
+               src: url('../Font/Nazanin.ttf');
             }
 
             html, body, div, span, applet, object, iframe,

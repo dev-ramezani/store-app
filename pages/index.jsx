@@ -1,14 +1,25 @@
 import Head from 'next/head'
-import Card from '../containers/card'
+import { H2 } from '../components'
+import Card from '../containers/Card'
+import Carousel from 'react-elastic-carousel'
 import LayoutPage from '../containers/LayoutPage'
 import React, { useState, useEffect } from 'react'
-import products from '../public/Products/products.json'
+import productData from '../public/Products/products.json'
+
+const breakPoints = [
+   { width: 0, itemsToShow: 0 },
+   { width: 600, itemsToShow: 1, itemsToScroll: 1 },
+   { width: 900, itemsToShow: 2 },
+   { width: 1400, itemsToShow: 3 },
+   { width: 1800, itemsToShow: 4 },
+   { width: 2300, itemsToShow: 5 }
+];
 
 export default function Home() {
-   const [data, setData] = useState([]);
+   const [products, setProducts] = useState([]);
 
    useEffect(() => {
-      setData(products);
+      setProducts(productData);
    }, []);
 
    return (
@@ -17,50 +28,36 @@ export default function Home() {
             <title>فروشگاه اینترنتی لوازم التحریر</title>
          </Head>
          <LayoutPage>
-            <h2>Welcome to our online stationery store</h2>
-            <p>This week's special discount:</p>
-            <div>
-               {data.length > 0 && (
-                  <>
-                     {data.map((products) => (
-                        products.status == "discounted" && <Card key={products.id} data={products} type='discounted' />
-                     ))}
-                  </>
-               )} 
+            <H2 align='center'>تخفیف ویژه این هفته</H2>
+            <div className='slideshow'>
+               <Carousel breakPoints={breakPoints}>
+                  { products && products.map((product) => ( product.is_discount && <Card key={product.id} data={product} from='home'  /> )) }
+               </Carousel>
+            </div>
+            <div className='normal'>
+               { products && products.map((product) => ( product.is_discount && <Card key={product.id} data={product} from='home'  /> )) }
+            </div>
+            <H2 align='center'>پر فروش ترین ها</H2>
+            <div className='slideshow'>
+               <Carousel breakPoints={breakPoints}>
+                  { products && products.map((product) => ( product.is_best_seller && <Card key={product.id} data={product} from='home'  /> )) }
+               </Carousel>
+            </div>
+            <div className='normal'>
+               { products && products.map((product) => ( product.is_best_seller && <Card key={product.id} data={product} from='home'  /> )) }
             </div>
          </LayoutPage>
          <style jsx>{`
-            div{
-               width: auto;
-               height: auto;    
-               display: flex;
-               padding: 25px;
-               flex-wrap: wrap;
-               margin: 15px auto;
-               justify-content: center;
-               background-color: #ff7979;
-               border-top-left-radius: 80px;
-               border-bottom-right-radius: 80px;  
-            }
+            div.normal{ display:none; }
+            
+            @media (min-width: 100px) and (max-width: 720px){
+               div.slideshow{ display:none; }
 
-            div:hover{ box-shadow: 1px 1px 4px gray; }
-
-            h2,p{
-               font-size: 20px;
-               text-align: center;
-               margin: 55px 0px 45px;
-               text-shadow: 1px 1px 2px black;
-            }
-
-            h2{ color: #EA2027; }
-            p{ color: #ee5253; }
-
-            @media (min-width: 768px) { 
-               div{ width: 350px; }
-            }
-  
-            @media (min-width: 992px) { 
-               div{ width: 850px; }
+               div.normal{
+                  display:flex;
+                  flex-wrap:wrap;
+                  justify-content:center;
+               }
             }
          `}</style>
       </>

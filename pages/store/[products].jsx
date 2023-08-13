@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import Detail from '../../containers/detail'
+import Detail from '../../containers/Detail'
 import React, { useState, useEffect } from 'react'
-import LayoutPage from '../../containers/LayoutPage'
 import products from '../../public/Products/products.json'
 
 export default function product() {
@@ -32,9 +31,7 @@ export default function product() {
       <Head>
         <title>فروشگاه اینترنتی لوازم التحریر</title>
       </Head>
-      <LayoutPage>
-        { found === false ? <div><h1 className='next-error-h1'>404</h1><hr/><h2>This product could not be found</h2></div> : <Detail product={product} /> }
-      </LayoutPage>
+      { found === false ? <div><h1 className='next-error-h1'>404</h1><hr/><h2>This product could not be found</h2></div> : <Detail product={product} /> }
       <style jsx>{`
         div{
           height: 97vh;

@@ -1,29 +1,34 @@
+import LayoutPage from './LayoutPage'
 import React, { useState } from 'react'
+import { H2, Paragraph, Delete } from '../components'
 
 export default function detail({ product }){
-   const percent_payable = product.status == "discounted" ? 1 - ( product.discount / 100 ) : 1
+   const percent_payable = product.is_discount ? 1 - ( product.discount / 100 ) : 1
    const [id,setId] = useState(0)
 
    return(
       <>
-         <main>
-            <h1>{product.name}</h1>
-            { product.discount != 0 && <span>Special discount : {product.discount}%</span> }
-            <img src={product.image} alt={product.name} />
+         <LayoutPage>
             <section>
-               { product.model && <p>Model: {product.model}</p> }
-               { product.package && <p>Package type: {product.package}</p> }
-               { product.body_material && <p>Body material: {product.body_material}</p> }
-               { product.tip_thickness && <p>Tip thickness: {product.tip_thickness}</p> }
-               { product.tip_type && <p>Tip type: {product.tip_type}</p> }
-               { product.available_colors && 
-                  <div>
-                     <p className='color'>Selected color: {product.available_colors[id]}</p>
-                     <p>Coloring: </p>
-                     <p>
+               <H2 align='center' gap='25px'>{product.name}</H2>
+               <img src={product.image} alt={product.name} />
+               { product.model && <Paragraph align='center' gap='25px'>مدل: {product.model}</Paragraph> }
+               { product.package && <Paragraph align='center' gap='25px'>نوع بسته بندی: {product.package}</Paragraph> }
+               { product.binding_type && <Paragraph align='center' gap='25px'>نوع صحافی: {product.binding_type}</Paragraph> }
+               { product.binding_form && <Paragraph align='center' gap='25px'>فرم صحافی: {product.binding_form}</Paragraph> }
+               { product.body_material && <Paragraph align='center' gap='25px'>جنس بدنه: {product.body_material}</Paragraph> }
+               { product.cover_material && <Paragraph align='center' gap='25px'>جنس جلد: {product.cover_material}</Paragraph> }
+               { product.tip_thickness && <Paragraph align='center' gap='25px'>ضخامت نوک: {product.tip_thickness}</Paragraph> }
+               { product.tip_hardness && <Paragraph align='center' gap='25px'>سختی نوک: {product.tip_hardness}</Paragraph> }
+               { product.tip_type && <Paragraph align='center' gap='25px'>نوع نوک: {product.tip_type}</Paragraph> }
+               { product.available_colors_en && 
+                  <>
+                     <Paragraph align='center' gap='25px'>رنگ انتخابی: {product.available_colors_fa[id]}</Paragraph>
+                     <Paragraph align='center' gap='25px'>رنگ بندی:</Paragraph>
+                     <Paragraph align='center' gap='25px'>
                         {
-                           product.available_colors.map((color, index) => (
-                              <button 
+                           product.available_colors_en.map((color, index) => (
+                              <span 
                                  className={ index == id && "active"} 
                                  style={{ backgroundColor: color }} 
                                  onClick={() => setId(index)} 
@@ -31,91 +36,58 @@ export default function detail({ product }){
                               />
                            ))
                         }
-                     </p>
-                  </div>
+                     </Paragraph>
+                  </>
                }
-               { product.status == "discounted" && <p className='oprice'>Last Price: {product.price[id]} Toman </p> }
-               { product.price && <p>Price: {Math.round(product.price[id] * percent_payable)} Toman</p> }
+               { product.is_discount && <Delete align='center' gap='25px'>قیمت قبلی: {product.price[id]} تومان </Delete> }
+               { product.price && <Paragraph align='center' gap='25px'>قیمت: {Math.round(product.price[id]*percent_payable)} تومان</Paragraph> }
             </section>
-         </main>
+         </LayoutPage>
          <style jsx>{`
-            h1{ font-weight: 300; }
-
-            span{
-               top: 15px;
-               left: 70px;
-               color: white;
-               height: 20px;
-               padding: 15px;
-               color: #e74c3c;
-               position: fixed;
-               border-radius: 20px;
-               border: 3px solid #e74c3c;
+            section{
+               width:100%;
+               max-height:auto;
+               min-height:730px;
             }
 
             img{
-               float: left;
-               width: 530px;
-               height: 610px;
-            }
-            
-            p{
-               margin: 39px;
-               font-size: 16px;
-               text-align: center;
+               float:left;
+               margin:20px;
+               width:500px;
+               height:580px;
             }
 
-            .color{
-               margin-bottom: -30px;
+            span{
+               width:40px;
+               margin:5px;
+               height:40px;
+               border-radius:20px;
+               display:inline-block;
+               border:1px solid gray;
+            } 
+
+            span.active{
+               border:3px solid #c23616;
             }
 
-            .oprice{
-               color: #EA2027;
-               margin-bottom: -25px;
-               text-decoration: line-through;
-            }
-
-            div{
-               margin: 10px auto;
-            }
-
-            button{
-               width: 40px;
-               height: 40px;
-               display: inline;
-               margin: -35px 5px;
-               border-radius: 20px;
-               border: 1px solid gray;
-            }  
-
-            button.active{ border: 3px solid #c23616; }
-
-            @media (min-width: 320px) and (max-width: 768px ) {  
-               main{
-                  display: flex;
-                  flex-wrap: wrap;
-                  flex-direction: column;
-                  justify-content: center;
+            @media (min-width: 750px) and (max-width: 768px){
+               img{
+                  width:360px;
+                  height:600px;
+                  margin:20px;
                }
-
-               h1{ text-align: center; }
-               img{ margin: 10px auto; }
-               span{ display: none; }
             }
 
-            @media (min-width: 768px) { 
-               h1{
-                  margin: 0px;
-                  margin-top: 20px;
-                  text-align: center;
-                  margin-bottom: 10px;
-               }
-
+            @media (max-width: 750px){
                section{
-                  display: flex;
-                  flex-wrap: wrap;
-                  flex-direction: column;
-                  justify-content: center;
+                  display:flex;
+                  flex-direction:column;
+               }
+
+               img{
+                  width:280px;
+                  height:380px;
+                  margin:20px auto;
                }
             }
          `}</style>
