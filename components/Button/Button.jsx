@@ -29,7 +29,7 @@ const Button = ({ children, widthAll }) => {
             }
 
             button:hover{
-               box-shadow: 0px 0px 12px gray;
+               box-shadow: 0px 0px 8px gray;
             }
          `}</style>
       </>

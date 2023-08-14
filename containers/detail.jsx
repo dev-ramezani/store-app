@@ -2,7 +2,7 @@ import LayoutPage from './LayoutPage'
 import React, { useState } from 'react'
 import { H2, Paragraph, Delete } from '../components'
 
-export default function detail({ product }){
+export default function Detail({ product }){
    const percent_payable = product.is_discount ? 1 - ( product.discount / 100 ) : 1
    const [id,setId] = useState(0)
 
