@@ -1,22 +1,16 @@
+import 'swiper/css'
 import Head from 'next/head'
+import 'swiper/css/pagination'
 import { H2 } from '../components'
 import Card from '../containers/Card'
-import Carousel from 'react-elastic-carousel'
 import LayoutPage from '../containers/LayoutPage'
 import React, { useState, useEffect } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Autoplay } from 'swiper/modules'
 import productData from '../public/Products/products.json'
 
-const breakPoints = [
-   { width: 0, itemsToShow: 0 },
-   { width: 600, itemsToShow: 1, itemsToScroll: 1 },
-   { width: 900, itemsToShow: 2 },
-   { width: 1400, itemsToShow: 3 },
-   { width: 1800, itemsToShow: 4 },
-   { width: 2300, itemsToShow: 5 }
-];
-
 export default function Home() {
-   const [products, setProducts] = useState([]);
+   const [products, setProducts] = useState([])
 
    useEffect(() => {
       setProducts(productData);
@@ -29,35 +23,129 @@ export default function Home() {
          </Head>
          <LayoutPage>
             <H2 align='center'>تخفیف ویژه این هفته</H2>
-            <div className='slideshow'>
-               <Carousel breakPoints={breakPoints}>
-                  { products && products.map((product) => ( product.is_discount && <Card key={product.id} data={product} from='home'  /> )) }
-               </Carousel>
+            <div className='x-large'>
+               <Swiper
+                  autoplay={{ delay: 5000, disableOnInteraction: false, }}
+                  slidesPerView={3}
+                  spaceBetween={30}
+                  pagination={{ clickable: false }}
+                  modules={[Pagination, Autoplay]}
+                  style={{ minHeight: '320px', }}
+                  className="mySwiper"
+               >
+                  { products && products.map((product) => ( product.is_discount && 
+                     <SwiperSlide key={product.id}>
+                        <Card data={product} from='home' /> 
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
             </div>
-            <div className='normal'>
-               { products && products.map((product) => ( product.is_discount && <Card key={product.id} data={product} from='home'  /> )) }
+            <div className='large'>
+               <Swiper
+                  autoplay={{ delay: 5000, disableOnInteraction: false, }}
+                  slidesPerView={2}
+                  spaceBetween={30}
+                  pagination={{ clickable: false }}
+                  modules={[Pagination, Autoplay]}
+                  style={{ minHeight: '320px', }}
+                  className="mySwiper"
+               >
+                  { products && products.map((product) => ( product.is_discount && 
+                     <SwiperSlide key={product.id}>
+                        <Card data={product} from='home' /> 
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
+            </div>
+            <div className='small'>
+               <Swiper
+                  autoplay={{ delay: 5000, disableOnInteraction: false, }}
+                  slidesPerView={1}
+                  spaceBetween={30}
+                  pagination={{ clickable: false }}
+                  modules={[Pagination, Autoplay]}
+                  style={{ minHeight: '320px', }}
+                  className="mySwiper"
+               >
+                  { products && products.map((product) => ( product.is_discount && 
+                     <SwiperSlide key={product.id}>
+                        <Card data={product} from='home' /> 
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
             </div>
             <H2 align='center'>پر فروش ترین ها</H2>
-            <div className='slideshow'>
-               <Carousel breakPoints={breakPoints}>
-                  { products && products.map((product) => ( product.is_best_seller && <Card key={product.id} data={product} from='home'  /> )) }
-               </Carousel>
+            <div className='x-large'>
+               <Swiper
+                  autoplay={{ delay: 5000, disableOnInteraction: false, }}
+                  slidesPerView={3}
+                  spaceBetween={30}
+                  pagination={{ clickable: false }}
+                  modules={[Pagination, Autoplay]}
+                  style={{ minHeight: '320px', }}
+                  className="mySwiper"
+               >
+                  { products && products.map((product) => ( product.is_best_seller && 
+                     <SwiperSlide key={product.id}>
+                        <Card data={product} from='home' /> 
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
             </div>
-            <div className='normal'>
-               { products && products.map((product) => ( product.is_best_seller && <Card key={product.id} data={product} from='home'  /> )) }
+            <div className='large'>
+               <Swiper
+                  autoplay={{ delay: 5000, disableOnInteraction: false, }}
+                  slidesPerView={2}
+                  spaceBetween={30}
+                  pagination={{ clickable: false }}
+                  modules={[Pagination, Autoplay]}
+                  style={{ minHeight: '320px', }}
+                  className="mySwiper"
+               >
+                  { products && products.map((product) => ( product.is_best_seller && 
+                     <SwiperSlide key={product.id}>
+                        <Card data={product} from='home' /> 
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
+            </div>
+            <div className='small'>
+               <Swiper
+                  autoplay={{ delay: 5000, disableOnInteraction: false, }}
+                  slidesPerView={1}
+                  spaceBetween={30}
+                  pagination={{ clickable: false }}
+                  modules={[Pagination, Autoplay]}
+                  style={{ minHeight: '320px', }}
+                  className="mySwiper"
+               >
+                  { products && products.map((product) => ( product.is_best_seller && 
+                     <SwiperSlide key={product.id}>
+                        <Card data={product} from='home' /> 
+                     </SwiperSlide>
+                  ))}
+               </Swiper>
             </div>
          </LayoutPage>
          <style jsx>{`
-            div.normal{ display:none; }
-            
-            @media (min-width: 100px) and (max-width: 720px){
-               div.slideshow{ display:none; }
+            div{ text-align:center; }
 
-               div.normal{
-                  display:flex;
-                  flex-wrap:wrap;
-                  justify-content:center;
-               }
+            @media (min-width: 1480px) {
+               div.x-large{ display:block; }
+               div.large{ display:none; }
+               div.small{ display:none; }
+            }
+
+            @media (min-width: 970px) and (max-width: 1480px) {
+               div.x-large{ display:none; }
+               div.large{ display:block; }
+               div.small{ display:none; }
+            }
+
+            @media (min-width: 320px) and (max-width: 970px) {
+               div.x-large{ display:none; }
+               div.large{ display:none; }
+               div.small{ display:block; }
             }
          `}</style>
       </>

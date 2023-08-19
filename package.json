@@ -16,7 +16,7 @@
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-elastic-carousel": "^0.11.5"
+    "swiper": "^10.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.2.3",
