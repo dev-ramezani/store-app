@@ -13,13 +13,14 @@ const Hyperlink = ({ href, children, type = 'primary' }) => {
          </div>
          <style jsx>{`
             div{
-               display: inline-block;
+               display:inline-block;
             }
 
             a{
-               cursor: pointer;
-               text-decoration: none;
-               color: ${ type == 'primary' ? '#3498db' : 'white'}
+               cursor:pointer;
+               text-decoration:none;
+               font-weight:${ type == 'primary' ? '600' : '500'};
+               color:${ type == 'primary' ? '#f1c40f' : 'white'};
             }
          `}</style>
       </>

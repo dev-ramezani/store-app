@@ -7,8 +7,8 @@ const Small = ({ children, color }) => {
          <style jsx>{`
             small{
                color:${color};
-               font-size:0.9rem;
                font-weight:900;
+               font-size:0.9rem;
             }
          `}</style>
       </>

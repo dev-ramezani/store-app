@@ -1,17 +1,11 @@
 import React from 'react'
-import { H3, Paragraph, Hyperlink, Button } from '../components'
+import { H2, H3, Paragraph, Hyperlink, Button } from '../components'
 
 const LayoutPage = ({ children }) => {
    return (
       <>
          <header>
             <nav>
-               <Hyperlink href='/cart'>
-                  <div>
-                     <Paragraph gap='0.3rem' type='secondary'>0 تومان</Paragraph>
-                     <img className='cart' src='/Icons/shopping_cart.png' />
-                  </div>
-               </Hyperlink>
                <div>
                   <span>
                      <Hyperlink href='/register'>
@@ -20,14 +14,20 @@ const LayoutPage = ({ children }) => {
                   </span>
                   <Hyperlink href='/login' type='secondary'>ورود</Hyperlink>
                </div>
+               <Hyperlink href='/cart'>
+                  <div>
+                     <Paragraph gap='0.3rem' type='secondary'>0 تومان</Paragraph>
+                     <img className='cart' src='/Icons/shopping_cart.png' />
+                  </div>
+               </Hyperlink>
                <div className='title'>
-                  <H3>
+                  <H2>
                      <Hyperlink href='/' type='secondary'>
                         فروشگاه اینترنتی لوازم التحریر مهر
                      </Hyperlink>
-                  </H3>
+                  </H2>
                </div>
-               <div>
+               <div className='logo'>
                   <Hyperlink href='/'>
                      <img className='logo' src='/Icons/logo.png' />
                   </Hyperlink>  
@@ -47,59 +47,63 @@ const LayoutPage = ({ children }) => {
          </footer>
          <style jsx>{`
             header{
-               background-color: #2ecc71; 
+               background-color:#2ecc71; 
             }
 
             div, nav{
-               display: flex;
-               font-size: 20px;
-               padding: 0px 8px;
-               text-align: center;
-               align-items: center;
-               flex-direction: row-reverse;
-               justify-content: space-around;
+               display:flex;
+               font-size:20px;
+               padding:0px 8px;
+               text-align:center;
+               align-items:center;
+               flex-direction:row-reverse;
+               justify-content:space-around;
             }
 
             span{
-               margin-right: 60px;
+               margin-right:50px;
             }
 
             menu{
-               display: flex;
-               font-size: 20px;
-               padding: 20px 0px;
-               justify-content: space-around;
+               display:flex;
+               font-size:20px;
+               padding:20px 0px;
+               justify-content:space-around;
             }
 
             img.cart{
-               width: 45px;
-               height: 45px;
-               margin-left: 0.9rem;
+               width:45px;
+               height:45px;
+               margin-left:0.9rem;
             }
 
             img.logo{
-               width: 250px;
-               height: 150px;
-               padding: 20px;
+               width:250px;
+               height:150px;
+               padding:40px 20px 15px;
             }
 
             footer{
-               padding-bottom: 20px;
+               padding-bottom:20px;
             }
 
             @media (min-width: 320px) and (max-width: 992px) {
-               div{
-                  margin-top: 20px;
-               } 
-
-               img.logo{
-                  display: none;
+               div.title{
+                  display:none;
                }
             }
 
-            @media (min-width: 320px) and (max-width: 520px){
-               div.title{ 
-                  display: none;
+            @media (min-width: 320px) and (max-width: 570px){
+               nav{
+                  padding:25px 0px 15px;
+               }
+
+               span{
+                  margin-right:30px;
+               }
+
+               div.logo{ 
+                  display:none;
                }
             }
          `}</style>

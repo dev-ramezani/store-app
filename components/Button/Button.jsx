@@ -8,7 +8,7 @@ const Button = ({ children, widthAll }) => {
          </div>
          <style jsx>{`
             div{
-               width: 100%;
+               width:100%;
                text-align:${ !widthAll && 'center'};
             }
 
@@ -22,14 +22,14 @@ const Button = ({ children, widthAll }) => {
                position:relative;
                border-radius:16px;
                display:inline-block;
-               text-decoration: none;
-               background-color:#e74c3c;
-               transition-duration: 0.4s;
+               text-decoration:none;
+               background-color:#f39c12;
+               transition-duration:0.4s;
                width:${ widthAll ? '100%' : 'auto' };
             }
 
             button:hover{
-               box-shadow: 0px 0px 8px gray;
+               box-shadow:0px 0px 8px gray;
             }
          `}</style>
       </>

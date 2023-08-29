@@ -19,18 +19,18 @@ export default function Card({ data, from = 'store' }){
          </Hyperlink>
          <style jsx>{`
             article{
-               margin:9px;
+               margin:3px;
                width:450px;
                padding:5px;
                height:253px;
                cursor:pointer;
                text-align:center;
                position:relative;
-               border:#27ae60 solid 2px;
+               border:#c0392b solid ${from == 'store' ? '1px' : '2px'};
             }
 
             article:hover{
-               box-shadow:${from == 'store' && '1px 1px 16px #badc58'};
+               box-shadow:${from == 'store' && '0px 0px 16px rgba(128, 128, 128, 0.4)'};
             }
 
             div{  
@@ -57,7 +57,7 @@ export default function Card({ data, from = 'store' }){
                font-size:18px;
                padding-left:0px;
                position:absolute;
-               background-color:#2ecc71;
+               background-color:#ffc048;
                border-top-right-radius:20px;
                border-bottom-right-radius:20px;
             }

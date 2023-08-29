@@ -9,7 +9,8 @@ const Paragraph = ({ children, align = 'right', gap = '0px', type = 'primary' })
                font-size:1.3rem;
                text-align:${align};
                margin-bottom:${gap};
-               color:${ type == 'primary' ? '#e74c3c' : 'white' };
+               color:${ type == 'primary' ? '#f39c12' : 'white' };
+               font-weight:${ type == 'secondary' ? '500' : '600' };
             }
          `}</style>
       </>
