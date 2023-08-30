@@ -6,8 +6,8 @@ const FormControl = ({ children }) => {
          <div>{children}</div>
          <style jsx>{`
             div{
-               display: flex-block;
-               padding: 16px;
+               padding:10px;
+               display:flex-block;
             }
          `}</style>
       </>

@@ -15,8 +15,8 @@ export default function contact() {
 
    const verifyName = (event) => { 
       setStatus(null);
-      if ( validateInput(event.target.value) ){
-         setName(event.target.value)
+      if ( validateInput(event) ){
+         setName(event)
          setError({
             ...Errors,
             Name: null
@@ -32,8 +32,8 @@ export default function contact() {
 
    const verifyEmail = (event) =>{
       setStatus(null);
-      if ( validateEmail(event.target.value) ){
-         setEmail(event.target.value)
+      if ( validateEmail(event) ){
+         setEmail(event)
          setError( {
             ...Errors,
             Email: null
@@ -49,8 +49,8 @@ export default function contact() {
 
    const verifySubject = (event) => { 
       setStatus(null);
-      if ( validateInput(event.target.value) ){
-         setSubject(event.target.value)
+      if ( validateInput(event) ){
+         setSubject(event)
          setError({
             ...Errors,
             Subject: null

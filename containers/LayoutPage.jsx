@@ -1,19 +1,38 @@
 import React from 'react'
+import { LOGOUT_ACTION } from '../actions'
+import { useDispatch, useSelector } from 'react-redux'
 import { H2, H3, Paragraph, Hyperlink, Button } from '../components'
 
 const LayoutPage = ({ children }) => {
+   const dispatch = useDispatch()
+   const auth = useSelector((state) => state.auth)
+ 
+   const handleLogOut = () => {
+      dispatch(LOGOUT_ACTION())
+   }
+
    return (
       <>
          <header>
             <nav>
-               <div>
-                  <span>
-                     <Hyperlink href='/register'>
-                        <Button>ثبت نام</Button>
-                     </Hyperlink>
-                  </span>
-                  <Hyperlink href='/login' type='secondary'>ورود</Hyperlink>
-               </div>
+               { !auth || !auth.logged && 
+                  <div>
+                     <span>
+                        <Hyperlink href='/register'>
+                           <Button>ثبت نام</Button>
+                        </Hyperlink>
+                     </span>
+                     <Hyperlink href='/login' type='secondary'>ورود</Hyperlink>
+                  </div>
+               }
+               { auth && auth.logged && 
+                  <div>
+                     <span className='logout'>
+                        <Button onClick={handleLogOut}>خروج</Button>
+                     </span>
+                     <Paragraph align='center' type='secondary'>دوست عزیز، خوش اومدی</Paragraph>
+                  </div>
+               }
                <Hyperlink href='/cart'>
                   <div>
                      <Paragraph gap='0.3rem' type='secondary'>0 تومان</Paragraph>
@@ -85,6 +104,24 @@ const LayoutPage = ({ children }) => {
 
             footer{
                padding-bottom:20px;
+            }
+
+            @media (min-width: 768px) and (max-width: 1024px) {
+               span.logout{
+                  margin-right:20px;
+               }
+            }
+
+            @media (min-width: 425px) and (max-width: 768px) {
+               span.logout{
+                  margin-right:30px;
+               }
+            }
+
+            @media (min-width: 320px) and (max-width: 425px) {
+               span.logout{
+                  margin-right:10px;
+               }
             }
 
             @media (min-width: 320px) and (max-width: 992px) {

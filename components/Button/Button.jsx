@@ -1,10 +1,13 @@
 import React from 'react'
 
-const Button = ({ children, widthAll }) => {
+const Button = ({ children, buttonModel = 'primary', onClick = () => {}, loading, widthAll }) => {
    return (
       <>
          <div>
-            <button>{children}</button> 
+            <button onClick={onClick} disabled={loading}>
+               { loading && 'چند لحظه صبر کنید...'}
+               { !loading && children}
+            </button> 
          </div>
          <style jsx>{`
             div{
@@ -29,7 +32,11 @@ const Button = ({ children, widthAll }) => {
             }
 
             button:hover{
-               box-shadow:0px 0px 8px gray;
+               box-shadow:${ buttonModel == 'primary' && '0px 0px 8px gray' };
+            }
+
+            button:disabled{
+               background-color:rgb(243, 156, 18, 0.5);
             }
          `}</style>
       </>
