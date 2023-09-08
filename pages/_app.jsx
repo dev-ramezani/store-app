@@ -26,17 +26,22 @@ MyApp.getInitialProps = async (appContext) => {
       cookies = new Cookies()
    }
    windowHandler.cookies = cookies
-   if( cookies.get('user-id') && cookies.get('user-id') != '' ){
-      await store.dispatch(VERIFY_USER_ACTION(cookies.get('user-id')))
+   if( cookies.get('user_id') && cookies.get('user_id') != '' ){
+      await store.dispatch(VERIFY_USER_ACTION(cookies.get('user_id')))
       const { auth } = await store.getState()
       if( appContext.ctx.res ){
          const loggedCookie = `logged=${auth.logged}` 
          appContext.ctx.res.setHeader('set-cookie',`${loggedCookie}`)
       }
+      else{
+         if( cookies.get('logged') !== true ){
+            cookies.set('logged',auth.logged)
+         }
+      }
    }
    else{
       if( appContext.ctx.res ){
-         const userIdCookie = 'user-id='
+         const userIdCookie = 'user_id='
          appContext.ctx.res.setHeader('set-cookie',`${userIdCookie}`)
          const loggedCookie = 'logged=false'
          appContext.ctx.res.setHeader('set-cookie',`${loggedCookie}`)

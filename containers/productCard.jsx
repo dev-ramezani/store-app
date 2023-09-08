@@ -62,7 +62,17 @@ export default function Card({ data, from = 'store' }){
                border-bottom-right-radius:20px;
             }
 
-            @media (min-width: 320px) and (max-width: 426px){
+            @media (min-width: 425px) and (max-width: 450px){
+               article{ 
+                  width:300px;
+               }
+
+               img{
+                  width:150px;
+               }
+            }
+
+            @media (min-width: 320px) and (max-width: 425px){
                article{ 
                   width:300px;
                }

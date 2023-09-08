@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
+import { GET_USER_INFO_ACTION } from '../actions'
 import LayoutAuth from '../containers/LayoutAuth'
 import React, { useState, useEffect } from 'react'
 import FormControl from '../containers/FormControl'
 import { useDispatch, useSelector } from 'react-redux'
-import { GET_USER_INFO_ACTION } from '../actions/index'
 import { H3, InputText, InputPassword, Alert, Button, Hyperlink } from '../components'
 
 export default function Login() {
@@ -36,7 +36,7 @@ export default function Login() {
             if ( user.email == formValue.username && user.password == formValue.password || user.phone == formValue.username && user.password == formValue.password ){ 
                router.push('/') 
                setMessage(null)
-               cookies.set('user-id',user.id,{ path: '/' })
+               cookies.set('user_id',user.id,{ path: '/' })
                found = true
             }
          })

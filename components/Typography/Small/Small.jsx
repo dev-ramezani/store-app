@@ -8,7 +8,7 @@ const Small = ({ children, color }) => {
             small{
                color:${color};
                font-weight:900;
-               font-size:0.9rem;
+               font-size:0.9em;
             }
          `}</style>
       </>

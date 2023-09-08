@@ -53,7 +53,7 @@ const auth = (state = [], action) => {
                 ...action,
             }
         case actionTypes.LOGOUT:
-            cookies.remove('user-id')
+            cookies.remove('user_id')
             cookies.remove('logged')
             return {
                 ...state,

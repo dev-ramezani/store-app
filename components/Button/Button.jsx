@@ -1,24 +1,23 @@
 import React from 'react'
 
-const Button = ({ children, buttonModel = 'primary', onClick = () => {}, loading, widthAll }) => {
+const Button = ({ children, buttonModel = 'primary', onClick = () => {}, loading, disabled, noBackground, justBorder, widthAll }) => {
    return (
       <>
          <div>
-            <button onClick={onClick} disabled={loading}>
+            <button onClick={onClick} disabled={loading || disabled}>
                { loading && 'چند لحظه صبر کنید...'}
                { !loading && children}
             </button> 
          </div>
          <style jsx>{`
             div{
-               width:100%;
+               width:${ !noBackground && '100%'};
                text-align:${ !widthAll && 'center'};
             }
 
             button{
-               border:2px;
+               border:0px;
                color:white;
-               padding:15px;
                font-size:1.1;
                cursor:pointer;
                font-size:18px;
@@ -26,9 +25,12 @@ const Button = ({ children, buttonModel = 'primary', onClick = () => {}, loading
                border-radius:16px;
                display:inline-block;
                text-decoration:none;
-               background-color:#f39c12;
                transition-duration:0.4s;
+               padding:${ !noBackground ? '15px' : '5px 15px 0px'};
+               border:${ justBorder && '2px solid' };
                width:${ widthAll ? '100%' : 'auto' };
+               color:${ !justBorder ? 'white' : '#f39c12' };
+               background-color:${ !noBackground && !justBorder ? '#f39c12' : 'white' };
             }
 
             button:hover{
@@ -36,7 +38,8 @@ const Button = ({ children, buttonModel = 'primary', onClick = () => {}, loading
             }
 
             button:disabled{
-               background-color:rgb(243, 156, 18, 0.5);
+               border:${ justBorder ? '2px solid' : 'none' };
+               background-color:${ !noBackground && !justBorder ? 'rgb(243, 156, 18, 0.5)' : 'white' };
             }
          `}</style>
       </>

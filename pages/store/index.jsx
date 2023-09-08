@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { H1 } from '../../components'
-import Card from '../../containers/Card'
+import Card from '../../containers/productCard'
 import React, { useState, useEffect } from 'react'
 import LayoutPage from '../../containers/LayoutPage'
 import products from '../../public/Products/products.json'

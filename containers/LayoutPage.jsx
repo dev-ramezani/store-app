@@ -26,19 +26,18 @@ const LayoutPage = ({ children }) => {
                   </div>
                }
                { auth && auth.logged && 
-                  <div>
-                     <span className='logout'>
+                  <>
+                     <div>
                         <Button onClick={handleLogOut}>خروج</Button>
-                     </span>
-                     <Paragraph align='center' type='secondary'>دوست عزیز، خوش اومدی</Paragraph>
-                  </div>
+                     </div>
+                     <Hyperlink href='/cart'>
+                        <div>
+                           <Paragraph gap='0.3rem' type='secondary'>0 تومان</Paragraph>
+                           <img className='cart' src='/Icons/shopping_cart.png' />
+                        </div>
+                     </Hyperlink>
+                  </>
                }
-               <Hyperlink href='/cart'>
-                  <div>
-                     <Paragraph gap='0.3rem' type='secondary'>0 تومان</Paragraph>
-                     <img className='cart' src='/Icons/shopping_cart.png' />
-                  </div>
-               </Hyperlink>
                <div className='title'>
                   <H2>
                      <Hyperlink href='/' type='secondary'>
@@ -106,31 +105,13 @@ const LayoutPage = ({ children }) => {
                padding-bottom:20px;
             }
 
-            @media (min-width: 768px) and (max-width: 1024px) {
-               span.logout{
-                  margin-right:20px;
-               }
-            }
-
-            @media (min-width: 425px) and (max-width: 768px) {
-               span.logout{
-                  margin-right:30px;
-               }
-            }
-
-            @media (min-width: 320px) and (max-width: 425px) {
-               span.logout{
-                  margin-right:10px;
-               }
-            }
-
             @media (min-width: 320px) and (max-width: 992px) {
                div.title{
                   display:none;
                }
             }
 
-            @media (min-width: 320px) and (max-width: 570px){
+            @media (min-width: 320px) and (max-width: 485px){
                nav{
                   padding:25px 0px 15px;
                }

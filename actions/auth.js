@@ -4,7 +4,7 @@ import actionTypes from '../configs/actionTypes'
 const GET_USER_INFO_ACTION = () => {
     return async dispatch => {
         return reduxCall(dispatch,{
-            url: '/user',
+            url: '/users',
             method: 'GET',
             name: 'GET_USER_INFO',
         })
@@ -14,7 +14,7 @@ const GET_USER_INFO_ACTION = () => {
 const REGISTER_ACTION = (formValue) => {
     return async dispatch => {
         return reduxCall(dispatch,{
-            url: '/user',
+            url: '/users',
             method: 'POST',
             name: 'REGISTER',
             body: formValue
@@ -25,7 +25,7 @@ const REGISTER_ACTION = (formValue) => {
 const VERIFY_USER_ACTION = (user_id) => {
     return async dispatch => {
         return reduxCall(dispatch,{
-            url: `/user/${user_id}`,
+            url: `/users/${user_id}`,
             method: 'GET',
             name: 'VERIFY_USER',
         })

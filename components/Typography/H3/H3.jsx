@@ -6,11 +6,11 @@ const H3 = ({ children, align }) => {
          <h3>{children}</h3>
          <style jsx>{`
             h3{
+               margin:1em 0;
                color:#e67e22;
                font-weight:600;
                line-height:1.3;
-               margin:1.8rem 0;
-               font-size:1.728rem;
+               font-size:1.728em;
                text-align:${align};
             }
          `}</style>

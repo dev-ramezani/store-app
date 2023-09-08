@@ -6,7 +6,7 @@ const fetchUrl = async ({ url, method = 'GET', body }) => {
             method,
             headers: { 'Content-Type':'application/json' },
          }
-         if( method === 'POST' ){
+         if( method === 'POST' || method === 'PUT' ){
             params.body = JSON.stringify(body)
          }
          const response = await fetch(absoluteUrl,params)
