@@ -45,7 +45,8 @@ const auth = (state = [], action) => {
             return { 
                 ...state, 
                 logged: action.logged,
-                loading: action.loading
+                loading: action.loading,
+                data: action.response
             }
         case actionTypes.VERIFY_USER_FAILED:
             return { 

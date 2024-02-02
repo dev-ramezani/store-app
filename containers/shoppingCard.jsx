@@ -2,9 +2,9 @@ import Cookies from 'universal-cookie'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { H3, Paragraph, Delete, Button } from '../components'
-import { UPDATE_CART_ACTION, REMOVE_FROM_CART_ACTION } from '../actions'
+import { UPDATE_CART_ACTION, REMOVE_FROM_CART_ACTION, GET_CART_PRODUCTS_INFO_ACTION } from '../actions'
 
-export default function Card({item, product, setInDelete}) {
+export default function Card({item, product, setTotalPrice, cartTotalPrice}) {
    const color_id = item.color_id
    const percent_payable = product.is_discount ? 1 - ( product.discount / 100 ) : 1
    const amount_payable = product.price[color_id] * percent_payable
@@ -21,16 +21,20 @@ export default function Card({item, product, setInDelete}) {
          if( status === 'increase' ){
             const product_change = { number: counter+1 }
             dispatch(UPDATE_CART_ACTION(user_id,product_id,product_change))
+            setTotalPrice(cartTotalPrice+amount_payable)
             setCounter(counter+1)
          }
          else if( status === 'decrease' ){
             const product_change = { number: counter-1 }
             dispatch(UPDATE_CART_ACTION(user_id,product_id,product_change))
+            setTotalPrice(cartTotalPrice-amount_payable)
             setCounter(counter-1)
          }
          else if( status === 'delete' ){
             dispatch(REMOVE_FROM_CART_ACTION(user_id,product_id))
-            setInDelete(true)
+            setTimeout(() => {
+               dispatch(GET_CART_PRODUCTS_INFO_ACTION(user_id))
+            }, 800);
          }
       }
    }

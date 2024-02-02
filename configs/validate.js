@@ -4,7 +4,7 @@ const validateEmail = (Email) => {
 };
 
 const validatePhone = (Phone) => {
-    const pattern = /9[0-9]+/
+    const pattern = /^9[0-9]+$/
     return pattern.test(Phone) && Phone.length == 10
 }
 
@@ -12,6 +12,11 @@ const validatePassword = (Password) => {
     return String(Password).match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/) && Password.length >= 8
 }
 
+const isNumber = (text) => {
+    const pattern = /^[0-9]+$/
+    return pattern.test(text)
+}
+
 const validateInput = (input) => input.length > 10
 
-export { validateEmail, validatePhone, validatePassword, validateInput }
+export { validateEmail, validatePhone, validatePassword, isNumber, validateInput }

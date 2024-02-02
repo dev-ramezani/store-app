@@ -1,16 +1,33 @@
-import React from 'react'
-import { LOGOUT_ACTION } from '../actions'
+import Cookies from 'universal-cookie'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import calculateTotalNumber from '../configs/calculateTotalNumber'
 import { H2, H3, Paragraph, Hyperlink, Button } from '../components'
+import { GET_CART_PRODUCTS_INFO_ACTION, LOGOUT_ACTION } from '../actions'
 
 const LayoutPage = ({ children }) => {
+   const cookies = new Cookies()
    const dispatch = useDispatch()
    const auth = useSelector((state) => state.auth)
- 
+   const [totalNumber,setTotalNumber] = useState(0)
+   const { userCart } = useSelector((state) => state.cart)
+
    const handleLogOut = () => {
       dispatch(LOGOUT_ACTION())
    }
 
+   useEffect(() => {
+      if ( cookies.get('user_id') && cookies.get('user_id') != '' ){
+         dispatch(GET_CART_PRODUCTS_INFO_ACTION(cookies.get('user_id'))) 
+      }
+   },[])
+
+   useEffect(() => {
+      if ( typeof(userCart) === 'object' ){
+         setTotalNumber(calculateTotalNumber(userCart))
+      }
+   },[userCart])
+   
    return (
       <>
          <header>
@@ -30,9 +47,9 @@ const LayoutPage = ({ children }) => {
                      <div>
                         <Button onClick={handleLogOut}>خروج</Button>
                      </div>
-                     <Hyperlink href='/cart'>
+                     <Hyperlink href='/checkout/cart'>
                         <div>
-                           <Paragraph gap='0.3rem' type='secondary'>0 تومان</Paragraph>
+                           <Paragraph leftGap='0.7rem' type='secondary'>{totalNumber} محصول</Paragraph>
                            <img className='cart' src='/Icons/shopping_cart.png' />
                         </div>
                      </Hyperlink>

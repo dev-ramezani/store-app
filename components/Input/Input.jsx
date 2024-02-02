@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({ placeholder, type, onChange }) => {
+const Input = ({ placeholder, value, type, disabled, onChange }) => {
    const handleOnChange = (event) => {
       onChange(event.target.value)
    }
@@ -8,7 +8,14 @@ const Input = ({ placeholder, type, onChange }) => {
    return (
       <>
          <div>
-            <input type={type} placeholder={placeholder} onChange={handleOnChange} autoComplete={ type == 'password' ? 'current-password' : '' } /> 
+            <input 
+               type={type} 
+               value={value} 
+               disabled={disabled}
+               placeholder={placeholder} 
+               onChange={handleOnChange} 
+               autoComplete={ type == 'password' ? 'current-password' : '' } 
+            /> 
          </div>
          <style jsx>{`
             div{

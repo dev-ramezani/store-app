@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const Hyperlink = ({ href, children, type = 'primary' }) => { 
+const Hyperlink = ({ href, children, display = 'inline-block', type = 'primary' }) => { 
    return(
       <>
          <div>
@@ -13,7 +13,7 @@ const Hyperlink = ({ href, children, type = 'primary' }) => {
          </div>
          <style jsx>{`
             div{
-               display:inline-block;
+               display:${display};
             }
 
             a{

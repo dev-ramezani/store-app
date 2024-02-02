@@ -5,13 +5,12 @@ const cart = (state = [], action) => {
         case actionTypes.ADD_TO_CART_STARTED:
             return { 
                 ...state, 
-                loading: action.loading
+                waiting: action.loading
             }
         case actionTypes.ADD_TO_CART_SUCCESS:
             return { 
                 ...state, 
-                loading: action.loading,
-                successAdded: action.response
+                waiting: action.loading
             }
         case actionTypes.ADD_TO_CART_FAILED:
             return { 
@@ -34,22 +33,6 @@ const cart = (state = [], action) => {
                 ...state, 
                 ...action,
             }
-        case actionTypes.GET_CART_PRODUCT_SINGLE_INFO_STARTED:
-            return { 
-                ...state, 
-                loading: action.loading,
-            }
-        case actionTypes.GET_CART_PRODUCT_SINGLE_INFO_SUCCESS:
-            return { 
-                ...state, 
-                loading: action.loading,
-                userCart: action.response,
-            }
-        case actionTypes.GET_CART_PRODUCT_SINGLE_INFO_FAILED:
-            return { 
-                ...state, 
-                ...action,
-            }
         case actionTypes.UPDATE_CART_STARTED:
             return { 
                 ...state, 
@@ -67,13 +50,13 @@ const cart = (state = [], action) => {
             } 
         case actionTypes.REMOVE_FROM_CART_STARTED:
             return { 
-                ...state, 
-                loading: action.loading
+                ...state,
+                waiting: action.loading
             }
         case actionTypes.REMOVE_FROM_CART_SUCCESS:
             return { 
-                ...state, 
-                loading: action.loading
+                ...state,
+                waiting: action.loading
             }
         case actionTypes.REMOVE_FROM_CART_FAILED:
             return { 

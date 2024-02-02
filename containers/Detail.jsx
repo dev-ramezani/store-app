@@ -3,15 +3,15 @@ import Cookies from 'universal-cookie'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { H2, Paragraph, Delete, Button, Small } from '../components'
-import { ADD_TO_CART_ACTION, GET_CART_PRODUCT_SINGLE_INFO_ACTION ,REMOVE_FROM_CART_ACTION } from '../actions'
+import { ADD_TO_CART_ACTION, GET_CART_PRODUCTS_INFO_ACTION ,REMOVE_FROM_CART_ACTION } from '../actions'
 
 export default function Detail({ product }){
    const cookies = new Cookies()
-   const [id,setId] = useState()
+   const [id,setId] = useState(0)
    const dispatch = useDispatch()
    const [added,setAdded] = useState(false)
    const { logged } = useSelector((state) => state.auth)
-   const { loading, successAdded, userCart } = useSelector((state) => state.cart)
+   const { waiting, userCart } = useSelector((state) => state.cart)
    const percent_payable = product.is_discount ? 1 - ( product.discount / 100 ) : 1
 
    const changeStatus = async () => {
@@ -20,13 +20,9 @@ export default function Detail({ product }){
          if( added === false ){
             const product_info = { product_id: product.id, color_id: id, number: 1 }
             dispatch(ADD_TO_CART_ACTION(user_id,product_info))
-            setAdded(true)
          }
          else if( added === true ){
             let product_id
-            if( !(successAdded in userCart) && successAdded && successAdded.color_id === id ){
-               userCart[userCart.length] = successAdded
-            }
             userCart.map((item) => {
                if( item.color_id === id ){
                   product_id = item.id
@@ -34,32 +30,27 @@ export default function Detail({ product }){
             })
             if( product_id ){
                dispatch(REMOVE_FROM_CART_ACTION(user_id,product_id))
-               setAdded(false)
-            }
-            if( successAdded ){
-               const index = userCart.indexOf(successAdded)
-               if (index > -1) {
-                  userCart.splice(index, 1)
-               }
             }
          }
+         setAdded(!added)
+         setTimeout(() => {
+            dispatch(GET_CART_PRODUCTS_INFO_ACTION(user_id))
+         }, 800);
       }
    }
-
-   useEffect(() => { setId(0) },[])
 
    useEffect(() => {
       setAdded(false)
       if( cookies.get('user_id') && cookies.get('user_id') != '' ){
          const user_id = cookies.get('user_id') 
-         dispatch(GET_CART_PRODUCT_SINGLE_INFO_ACTION(user_id,product.id))
+         dispatch(GET_CART_PRODUCTS_INFO_ACTION(user_id))
       }
    },[id])
 
    useEffect(() => {
-      if ( userCart && userCart.length ){
+      if ( typeof(userCart) == 'object' && userCart.length >= 0 ){
          userCart.map((item) => { 
-            if( item.color_id == id ){
+            if( item.color_id == id && item.product_id == product.id ){
                setAdded(true)
             }
          })
@@ -70,22 +61,22 @@ export default function Detail({ product }){
       <>
          <LayoutPage>
             <section>
-               <H2 align='center' gap='25px'>{product.name}</H2>
+               <H2 align='center' gap='2rem'>{product.name}</H2>
                <img src={product.image} alt={product.name} />
-               { product.model && <Paragraph align='center' gap='25px'>مدل: {product.model}</Paragraph> }
-               { product.package && <Paragraph align='center' gap='25px'>نوع بسته بندی: {product.package}</Paragraph> }
-               { product.binding_type && <Paragraph align='center' gap='25px'>نوع صحافی: {product.binding_type}</Paragraph> }
-               { product.binding_form && <Paragraph align='center' gap='25px'>فرم صحافی: {product.binding_form}</Paragraph> }
-               { product.body_material && <Paragraph align='center' gap='25px'>جنس بدنه: {product.body_material}</Paragraph> }
-               { product.cover_material && <Paragraph align='center' gap='25px'>جنس جلد: {product.cover_material}</Paragraph> }
-               { product.tip_thickness && <Paragraph align='center' gap='25px'>ضخامت نوک: {product.tip_thickness}</Paragraph> }
-               { product.tip_hardness && <Paragraph align='center' gap='25px'>سختی نوک: {product.tip_hardness}</Paragraph> }
-               { product.tip_type && <Paragraph align='center' gap='25px'>نوع نوک: {product.tip_type}</Paragraph> }
+               { product.model && <Paragraph align='center' bottomGap='2rem'>مدل: {product.model}</Paragraph> }
+               { product.package && <Paragraph align='center' bottomGap='2rem'>نوع بسته بندی: {product.package}</Paragraph> }
+               { product.binding_type && <Paragraph align='center' bottomGap='2rem'>نوع صحافی: {product.binding_type}</Paragraph> }
+               { product.binding_form && <Paragraph align='center' bottomGap='2rem'>فرم صحافی: {product.binding_form}</Paragraph> }
+               { product.body_material && <Paragraph align='center' bottomGap='2rem'>جنس بدنه: {product.body_material}</Paragraph> }
+               { product.cover_material && <Paragraph align='center' bottomGap='2rem'>جنس جلد: {product.cover_material}</Paragraph> }
+               { product.tip_thickness && <Paragraph align='center' bottomGap='2rem'>ضخامت نوک: {product.tip_thickness}</Paragraph> }
+               { product.tip_hardness && <Paragraph align='center' bottomGap='2rem'>سختی نوک: {product.tip_hardness}</Paragraph> }
+               { product.tip_type && <Paragraph align='center' bottomGap='2rem'>نوع نوک: {product.tip_type}</Paragraph> }
                { product.available_colors_en && 
                   <>
-                     <Paragraph align='center' gap='25px'>رنگ انتخابی: {product.available_colors_fa[id]}</Paragraph>
-                     <Paragraph align='center' gap='25px'>رنگ بندی:</Paragraph>
-                     <Paragraph align='center' gap='25px'>
+                     <Paragraph align='center' bottomGap='2rem'>رنگ انتخابی: {product.available_colors_fa[id]}</Paragraph>
+                     <Paragraph align='center' bottomGap='2rem'>رنگ بندی:</Paragraph>
+                     <Paragraph align='center' bottomGap='2rem'>
                         {
                            product.available_colors_en.map((color, index) => (
                               <span 
@@ -99,9 +90,9 @@ export default function Detail({ product }){
                      </Paragraph>
                   </>
                }
-               { product.is_discount && <Delete align='center' gap='25px'>قیمت قبلی: {product.price[id]} تومان </Delete> }
-               { product.price && <Paragraph align='center' gap='25px'>قیمت: {Math.round(product.price[id]*percent_payable)} تومان</Paragraph> }
-               { loading ? 
+               { product.is_discount && <Delete align='center' gap='2rem'>قیمت قبلی: {product.price[id]} تومان </Delete> }
+               { product.price && <Paragraph align='center' bottomGap='2rem'>قیمت: {Math.round(product.price[id]*percent_payable)} تومان</Paragraph> }
+               { waiting ? 
                   <Button buttonModel='secondary' justBorder>
                      <img className='logo' src='/Icons/loading.gif' />
                      کمی صبر کنید...

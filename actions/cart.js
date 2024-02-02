@@ -21,16 +21,6 @@ const GET_CART_PRODUCTS_INFO_ACTION = (user_id) => {
     }
 }
 
-const GET_CART_PRODUCT_SINGLE_INFO_ACTION = (user_id,product_id) => {
-    return async dispatch => {
-        return reduxCall(dispatch,{
-            url: `/users/${user_id}/cart?product_id=${product_id}`,
-            method: 'GET',
-            name: 'GET_CART_PRODUCT_SINGLE_INFO',
-        })
-    }
-}
-
 const UPDATE_CART_ACTION = (user_id,product_id,product_change) => {
     return async dispatch => {
         return reduxCall(dispatch,{
@@ -55,7 +45,6 @@ const REMOVE_FROM_CART_ACTION = (user_id,product_id) => {
 export { 
     ADD_TO_CART_ACTION, 
     GET_CART_PRODUCTS_INFO_ACTION, 
-    GET_CART_PRODUCT_SINGLE_INFO_ACTION, 
     UPDATE_CART_ACTION, 
     REMOVE_FROM_CART_ACTION
 }

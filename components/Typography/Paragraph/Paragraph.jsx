@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Paragraph = ({ children, align = 'right', gap = '0px', type = 'primary' }) => { 
+const Paragraph = ({ children, align = 'right', topGap = '0px' ,  bottomGap = '0px', leftGap = '0px', type = 'primary' }) => { 
    return(
       <>
          <p>{children}</p>
@@ -8,7 +8,9 @@ const Paragraph = ({ children, align = 'right', gap = '0px', type = 'primary' })
             p{
                font-size:1.3rem;
                text-align:${align};
-               margin-bottom:${gap};
+               margin-top:${topGap};
+               margin-left:${leftGap};
+               margin-bottom:${bottomGap};
                color:${ type == 'primary' ? '#f39c12' : 'white' };
                font-weight:${ type == 'secondary' ? '500' : '600' };
             }

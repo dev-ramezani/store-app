@@ -11,9 +11,9 @@ export default function Card({ data, from = 'store' }){
                { data.is_discount && <span>{data.discount}%</span> }
                <img src={`${data.image}`} />
                <div>
-                  <Paragraph align='center' gap='15px'>{data.name}</Paragraph>
-                  { data.is_discount && <Delete align='center' gap='15px'>{data.price[0]} تومان</Delete> }
-                  <Paragraph align='center' gap='15px'>{Math.round(data.price[0]*percent_payable)} تومان</Paragraph>
+                  <Paragraph align='center' bottomGap='1.3rem'>{data.name}</Paragraph>
+                  { data.is_discount && <Delete align='center' gap='1.3rem'>{data.price[0]} تومان</Delete> }
+                  <Paragraph align='center' bottomGap='1.3rem'>{Math.round(data.price[0]*percent_payable)} تومان</Paragraph>
                </div>
             </article>
          </Hyperlink>
